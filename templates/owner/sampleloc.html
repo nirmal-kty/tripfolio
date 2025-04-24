@@ -1,0 +1,65 @@
+
+<html>
+<head>
+  <title>Update Location on Google Map</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3y0szjZmNj_w2q9Vnc08ZL_FU6Z4VTFE"></script>
+  <style>
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Live Location Update</h1>
+  <div id="map"></div>
+
+  <script>
+    let map;
+    let marker;
+
+    // Initialize the map
+    function initMap() {
+      // Default location (can be any initial location)
+      const defaultLocation = { lat: {{ latitude }} , lng: {{ longitude }} };
+
+      // Initialize the map
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: defaultLocation,
+      });
+
+      // Initialize the marker
+      marker = new google.maps.Marker({
+        position: defaultLocation,
+        map: map,
+        title: "Current Location",
+      });
+
+      // Fetch and update location periodically
+      setInterval(fetchLocation, 1000); // Fetch every 5 seconds
+    }
+
+    // Fetch location from Django backend
+    function fetchLocation() {
+      fetch("/get-location/") // Replace with your Django endpoint
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          const newLocation = { lat: data.latitude, lng: data.longitude };
+          updateLocation(newLocation);
+        })
+        .catch((error) => console.error("Error fetching location:", error));
+    }
+
+    // Update the marker's position
+    function updateLocation(newLocation) {
+      marker.setPosition(newLocation);
+      map.setCenter(newLocation); // Optional: Center the map on the new location
+    }
+
+    // Initialize the map when the page loads
+    window.onload = initMap;
+  </script>
+</body>
+</html>

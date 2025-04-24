@@ -1,0 +1,610 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#  <meta name="viewport" content="width=device-width, initial-scale=1.0" />#}
+{#  <title>Owner Details Form</title>#}
+{#  <style>#}
+{#    body {#}
+{#      margin: 0;#}
+{#      font-family: Arial, sans-serif;#}
+{#      display: flex;#}
+{#      justify-content: center;#}
+{#      align-items: center;#}
+{#      height: 100%;#}
+{#      background-color: hsl(218, 41%, 15%);#}
+{#      background-image: radial-gradient(650px circle at 0% 0%,#}
+{#          hsl(218, 41%, 35%) 15%,#}
+{#          hsl(218, 41%, 30%) 35%,#}
+{#          hsl(218, 41%, 20%) 75%,#}
+{#          hsl(218, 41%, 19%) 80%,#}
+{#          transparent 100%),#}
+{#        radial-gradient(1250px circle at 100% 100%,#}
+{#          hsl(218, 41%, 45%) 15%,#}
+{#          hsl(218, 41%, 30%) 35%,#}
+{#          hsl(218, 41%, 20%) 75%,#}
+{#          hsl(218, 41%, 19%) 80%,#}
+{#          transparent 100%);#}
+{#    }#}
+{##}
+{#    .form-container {#}
+{#  position: relative;#}
+{#  background-color: hsla(0, 0%, 100%, 0.9);#}
+{#  backdrop-filter: saturate(200%) blur(25px);#}
+{#  border-radius: 15px;#}
+{#  padding: 25px;#}
+{#  width: 90%;#}
+{#  max-width: 400px;#}
+{#  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);#}
+{##}
+{##}
+{#  /* Center the content inside the form container */#}
+{#  display: flex;#}
+{#  justify-content: center;#}
+{#  align-items: center;#}
+{#  text-align: center;#}
+{#        height: 100vh;#}
+{#}#}
+{##}
+{#.form-container table {#}
+{#  width: 100%;#}
+{#  margin: 0 auto;  /* Center the table horizontally */#}
+{#  border-collapse: collapse;  /* Optional: makes the table look cleaner */#}
+{#}#}
+{##}
+{#.form-container td {#}
+{#  padding: 10px;#}
+{#}#}
+{##}
+{#    .form-container input[type="text"],#}
+{#    .form-container input[type="file"],#}
+{#    .form-container input[type="password"] {#}
+{#      width: 100%;#}
+{#      padding: 10px;#}
+{#      border: 1px solid #ccc;#}
+{#      border-radius: 5px;#}
+{#      font-size: 1em;#}
+{#    }#}
+{##}
+{#    .form-container input[type="submit"] {#}
+{#      width: 100%;#}
+{#      padding: 12px;#}
+{#      border: none;#}
+{#      border-radius: 5px;#}
+{#      font-size: 1em;#}
+{#      color: #fff;#}
+{#      background-color: #44006b;#}
+{#      cursor: pointer;#}
+{#      transition: background-color 0.3s ease;#}
+{#    }#}
+{##}
+{#    .form-container input[type="submit"]:hover {#}
+{#      background-color: #ad1fff;#}
+{#    }#}
+{##}
+{#    #radius-shape-1,#}
+{#    #radius-shape-2 {#}
+{#      position: absolute;#}
+{#      z-index: -1;#}
+{#    }#}
+{##}
+{#    #radius-shape-1 {#}
+{#      height: 220px;#}
+{#      width: 220px;#}
+{#      top: -60px;#}
+{#      left: -130px;#}
+{#      background: radial-gradient(#44006b, #ad1fff);#}
+{#    }#}
+{##}
+{#    #radius-shape-2 {#}
+{#      border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;#}
+{#      bottom: -60px;#}
+{#      right: -110px;#}
+{#      width: 300px;#}
+{#      height: 300px;#}
+{#      background: radial-gradient(#44006b, #ad1fff);#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#  <div class="form-container">#}
+{#    <form action="/own_details" method="post" enctype="multipart/form-data" name="form1" id="form1">#}
+{#      <table>#}
+{#        <tr>#}
+{#          <td>Name</td>#}
+{#          <td><input type="text" name="textfield" required pattern="[A-Z a-z.]{3,25}" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Place</td>#}
+{#          <td><input type="text" name="textfield2"required pattern="[A-Z a-z.]{3,25}" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Pin</td>#}
+{#          <td><input type="text" name="textfield4" required pattern="[0-9]{6}" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Email</td>#}
+{#          <td><input type="text" name="textfield5" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Image</td>#}
+{#          <td><input type="file" name="file" required /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Phone</td>#}
+{#          <td><input type="text" name="textfield6" required pattern="[6789][0-9]{9}" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Username</td>#}
+{#          <td><input type="text" name="textfield7" required pattern="[a-z.]{3,25}" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Password</td>#}
+{#          <td><input type="password" name="textfield3" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Confirm Password</td>#}
+{#          <td><input type="password" name="textfield9" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td colspan="2">#}
+{#            <input type="submit" name="Submit" value="Add" />#}
+{#          </td>#}
+{#        </tr>#}
+{#      </table>#}
+{#    </form>#}
+{#  </div>#}
+{#  <div id="radius-shape-1"></div>#}
+{#  <div id="radius-shape-2"></div>#}
+{#</body>#}
+{#</html>#}
+
+
+
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#  <meta name="viewport" content="width=device-width, initial-scale=1.0" />#}
+{#  <title>Owner Details Form</title>#}
+{#  <style>#}
+{#    body {#}
+{#      margin: 0;#}
+{#      font-family: 'Roboto', sans-serif;#}
+{#      display: flex;#}
+{#      justify-content: center;#}
+{#      align-items: center;#}
+{#      height: 90%;#}
+{#      background-color: hsl(218, 41%, 15%);#}
+{#      background-image: radial-gradient(650px circle at 0% 0%,#}
+{#          hsl(218, 41%, 35%) 15%,#}
+{#          hsl(218, 41%, 30%) 35%,#}
+{#          hsl(218, 41%, 20%) 75%,#}
+{#          hsl(218, 41%, 19%) 80%,#}
+{#          transparent 100%),#}
+{#        radial-gradient(1250px circle at 100% 100%,#}
+{#          hsl(218, 41%, 45%) 15%,#}
+{#          hsl(218, 41%, 30%) 35%,#}
+{#          hsl(218, 41%, 20%) 75%,#}
+{#          hsl(218, 41%, 19%) 80%,#}
+{#          transparent 100%);#}
+{#    }#}
+{##}
+{#    .form-container {#}
+{#      position: relative;#}
+{#      background-color: hsla(0, 0%, 100%, 0.9);#}
+{#      backdrop-filter: saturate(200%) blur(25px);#}
+{#      border-radius: 15px;#}
+{#      padding: 25px;#}
+{#      width: 90%;#}
+{#      max-width: 400px;#}
+{#      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);#}
+{#      display: flex;#}
+{#      justify-content: center;#}
+{#      align-items: center;#}
+{#      text-align: center;#}
+{#      height: 100vh;#}
+{#    }#}
+{##}
+{#    /* Material Design Table */#}
+{#    .material-form-table {#}
+{#      width: 100%;#}
+{#      border-collapse: collapse;#}
+{#      margin: 0 auto;#}
+{#    }#}
+{##}
+{#    .material-form-table tr {#}
+{#      border-bottom: 1px solid rgba(0, 0, 0, 0.12);#}
+{#    }#}
+{##}
+{#    .material-form-table td {#}
+{#      padding: 16px 8px;#}
+{#      text-align: left;#}
+{#      font-weight: bold; /* Added bold for all table cells */#}
+{#    }#}
+{##}
+{#    .material-form-table td:first-child {#}
+{#      color: #5f6368;#}
+{#      font-weight: 600; /* Slightly bolder for labels */#}
+{#    }#}
+{##}
+{#    /* Material Design Inputs */#}
+{#    .material-input {#}
+{#      position: relative;#}
+{#      margin: 8px 0;#}
+{#    }#}
+{##}
+{#    .material-input input {#}
+{#      width: 100%;#}
+{#      padding: 10px 0;#}
+{#      border: none;#}
+{#      border-bottom: 1px solid #ccc;#}
+{#      background-color: transparent;#}
+{#      font-size: 16px;#}
+{#      font-weight: 500; /* Bold input text */#}
+{#      transition: border 0.3s;#}
+{#    }#}
+{##}
+{#    .material-input input:focus {#}
+{#      outline: none;#}
+{#      border-bottom: 2px solid #44006b;#}
+{#    }#}
+{##}
+{#    .material-input input[type="file"] {#}
+{#      padding: 10px 0 5px;#}
+{#      border-bottom: none;#}
+{#    }#}
+{##}
+{#    /* Material Button */#}
+{#    .material-button {#}
+{#      width: 50%;#}
+{#      padding: 12px;#}
+{#      border: none;#}
+{#      border-radius: 4px;#}
+{#      font-size: 16px;#}
+{#      font-weight: 600; /* Bolder button text */#}
+{#      color: white;#}
+{#      background-color: #44006b;#}
+{#      cursor: pointer;#}
+{#      text-transform: uppercase;#}
+{#      letter-spacing: 1px;#}
+{#      transition: all 0.3s;#}
+{#      box-shadow: 0 2px 4px rgba(0,0,0,0.2);#}
+{#      margin-top: 16px;  display: block; /* Ensures the width property is respected */#}
+{#        margin-left: auto; /* Centers the button */  margin-right: auto;#}
+{#    }#}
+{##}
+{#    .material-button:hover {#}
+{#      background-color: #ad1fff;#}
+{#      box-shadow: 0 4px 8px rgba(0,0,0,0.3);#}
+{#    }#}
+{##}
+{#    /* Background shapes (unchanged) */#}
+{#    #radius-shape-1,#}
+{#    #radius-shape-2 {#}
+{#      position: absolute;#}
+{#      z-index: -1;#}
+{#    }#}
+{##}
+{#    #radius-shape-1 {#}
+{#      height: 220px;#}
+{#      width: 220px;#}
+{#      top: -60px;#}
+{#      left: -130px;#}
+{#      background: radial-gradient(#44006b, #ad1fff);#}
+{#    }#}
+{##}
+{#    #radius-shape-2 {#}
+{#      border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;#}
+{#      bottom: -60px;#}
+{#      right: -110px;#}
+{#      width: 300px;#}
+{#      height: 300px;#}
+{#      background: radial-gradient(#44006b, #ad1fff);#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#  <div class="form-container">#}
+{#    <form action="/own_details" method="post" enctype="multipart/form-data" name="form1" id="form1">#}
+{#      <table class="material-form-table">#}
+{#        <tr class="material-input">#}
+{#          <td>Name</td>#}
+{#          <td><input type="text" name="textfield" required pattern="[A-Z a-z.]{3,25}" /></td>#}
+{#        </tr>#}
+{#        <tr class="material-input">#}
+{#          <td>Place</td>#}
+{#          <td><input type="text" name="textfield2" required pattern="[A-Z a-z.]{3,25}" /></td>#}
+{#        </tr>#}
+{#        <tr class="material-input">#}
+{#          <td>Pin</td>#}
+{#          <td><input type="text" name="textfield4" required pattern="[0-9]{6}" /></td>#}
+{#        </tr>#}
+{#        <tr class="material-input">#}
+{#          <td>Email</td>#}
+{#          <td><input type="text" name="textfield5" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" /></td>#}
+{#        </tr>#}
+{#        <tr class="material-input">#}
+{#          <td>Image</td>#}
+{#          <td><input type="file" name="file" required /></td>#}
+{#        </tr>#}
+{#        <tr class="material-input">#}
+{#          <td>Phone</td>#}
+{#          <td><input type="text" name="textfield6" required pattern="[6789][0-9]{9}" /></td>#}
+{#        </tr>#}
+{#        <tr class="material-input">#}
+{#          <td>Username</td>#}
+{#          <td><input type="text" name="textfield7" required pattern="[a-z.]{3,25}" /></td>#}
+{#        </tr>#}
+{#        <tr class="material-input">#}
+{#          <td>Password</td>#}
+{#          <td><input type="password" name="textfield3" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required /></td>#}
+{#        </tr>#}
+{#        <tr class="material-input">#}
+{#          <td>Confirm Password</td>#}
+{#          <td><input type="password" name="textfield9" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td colspan="2">#}
+{#            <input type="submit" name="Submit" value="Add" class="material-button" />#}
+{#          </td>#}
+{#        </tr>#}
+{#      </table>#}
+{#    </form>#}
+{#  </div>#}
+{#  <div id="radius-shape-1"></div>#}
+{#  <div id="radius-shape-2"></div>#}
+{#</body>#}
+{#</html>#}
+-----
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Owner Details Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: hsl(218, 41%, 15%);
+      background-image: radial-gradient(650px circle at 0% 0%,
+          hsl(218, 41%, 35%) 15%,
+          hsl(218, 41%, 30%) 35%,
+          hsl(218, 41%, 20%) 75%,
+          hsl(218, 41%, 19%) 80%,
+          transparent 100%),
+        radial-gradient(1250px circle at 100% 100%,
+          hsl(218, 41%, 45%) 15%,
+          hsl(218, 41%, 30%) 35%,
+          hsl(218, 41%, 20%) 75%,
+          hsl(218, 41%, 19%) 80%,
+          transparent 100%);
+    }
+
+    .form-container {
+      position: relative;
+      background-color: hsla(0, 0%, 100%, 0.95);
+      backdrop-filter: saturate(200%) blur(25px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      margin: 30px 0;
+      overflow: hidden;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .form-header h2 {
+      color: #44006b;
+      margin: 0;
+      font-weight: 600;
+      font-size: 24px;
+    }
+
+    /* Material Design Table */
+    .material-form-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 10px;
+      margin: 0 auto;
+    }
+
+    .material-form-table tr {
+      margin-bottom: 15px;
+    }
+
+    .material-form-table td {
+      padding: 8px 5px;
+      text-align: left;
+    }
+
+    .material-form-table td:first-child {
+      color: #5f6368;
+      font-weight: 500;
+      width: 35%;
+      min-width: 100px;
+      vertical-align: middle;
+    }
+
+    /* Material Design Inputs */
+    .material-input {
+      position: relative;
+      margin: 5px 0;
+    }
+
+    .material-input input {
+      width: 100%;
+      padding: 12px 10px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .material-input input:focus {
+      outline: none;
+      border-color: #44006b;
+      box-shadow: 0 0 0 2px rgba(68, 0, 107, 0.2);
+    }
+
+    .material-input input[type="file"] {
+      padding: 10px 0;
+      border: none;
+      border-bottom: 1px solid #e0e0e0;
+      border-radius: 0;
+    }
+
+    /* Material Button */
+    .material-button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(135deg, #44006b, #6a00a8);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-top: 20px;
+      display: block;
+    }
+
+    .material-button:hover {
+      background: linear-gradient(135deg, #6a00a8, #44006b);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Background shapes */
+    #radius-shape-1,
+    #radius-shape-2 {
+      position: fixed;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    #radius-shape-1 {
+      height: 220px;
+      width: 220px;
+      top: -60px;
+      left: -130px;
+      background: radial-gradient(#44006b, #ad1fff);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    #radius-shape-2 {
+      border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+      bottom: -60px;
+      right: -110px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(#44006b, #ad1fff);
+      animation: float 10s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      50% {
+        transform: translate(10px, 10px) rotate(5deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 20px 15px;
+      }
+
+      .material-form-table td:first-child {
+        width: 30%;
+        min-width: 90px;
+      }
+
+      .material-input input {
+        padding: 10px 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <div class="form-header">
+      <h2>Owner Registration</h2>
+    </div>
+    <form action="/own_details" method="post" enctype="multipart/form-data" name="form1" id="form1">
+      <table class="material-form-table">
+        <tr class="material-input">
+          <td>Name</td>
+          <td><input type="text" name="textfield" required pattern="[A-Z a-z.]{3,25}" /></td>
+        </tr>
+        <tr class="material-input">
+          <td>Place</td>
+          <td><input type="text" name="textfield2" required pattern="[A-Z a-z.]{3,25}" /></td>
+        </tr>
+        <tr class="material-input">
+          <td>Pin</td>
+          <td><input type="text" name="textfield4" required pattern="[0-9]{6}" /></td>
+        </tr>
+        <tr class="material-input">
+          <td>Email</td>
+          <td><input type="text" name="textfield5" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" /></td>
+        </tr>
+        <tr class="material-input">
+          <td>Image</td>
+          <td><input type="file" name="file" required /></td>
+        </tr>
+        <tr class="material-input">
+          <td>Phone</td>
+          <td><input type="text" name="textfield6" required pattern="[6789][0-9]{9}" /></td>
+        </tr>
+        <tr class="material-input">
+          <td>Username</td>
+          <td><input type="text" name="textfield7" required pattern="[a-z.]{3,25}" /></td>
+        </tr>
+        <tr class="material-input">
+          <td>Password</td>
+          <td><input type="password" name="textfield3" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required /></td>
+        </tr>
+        <tr class="material-input">
+          <td>Confirm Password</td>
+          <td><input type="password" name="textfield9" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required /></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" name="Submit" value="Register" class="material-button" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div id="radius-shape-1"></div>
+  <div id="radius-shape-2"></div>
+</body>
+</html>

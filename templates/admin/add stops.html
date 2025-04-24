@@ -1,0 +1,174 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{#<form method="post" action="/admin_add_stops_post">{% csrf_token %}#}
+{#    <table>#}
+{#        <tr>#}
+{#            <th>#}
+{#                Route#}
+{#            </th>#}
+{#            <td>#}
+{#                <select name="route">#}
+{#                    <option >---SELECT---</option>#}
+{#                    {% for i in data %}#}
+{#                    <option value="{{ i.id }}">{{ i.from_place }} to {{ i.to_place }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#            </td>#}
+{#        </tr>#}
+{#    <tr>#}
+{#        <th>#}
+{#            Stop Name#}
+{##}
+{#        </th>#}
+{#        <td>#}
+{#            <input type="text" name="stop">#}
+{#        </td>#}
+{#    </tr>#}
+{#     <tr>#}
+{#    <td width="51">Latitude</td>#}
+{#    <td width="133"><label>#}
+{##}
+{#      <input type="text" name="lat" />#}
+{#    </label></td>#}
+{#  </tr> <tr>#}
+{#    <td width="51">Longitude</td>#}
+{#    <td width="133"><label>#}
+{##}
+{#        <input type="text" name="lon" />#}
+{#    </label></td>#}
+{#  </tr>#}
+{#    <tr>#}
+{#        <th>#}
+{##}
+{#        </th>#}
+{#<th><input type="submit"> </th>#}
+{#    </tr>#}
+{#    </table>#}
+{#</form>#}
+{##}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Stop</title>
+    <style>
+        .container {
+            max-width: 100%;
+            background: #f8f9fd;
+            background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+            border-radius: 40px;
+            padding: 25px 35px;
+            border: 5px solid rgb(255, 255, 255);
+            box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .heading {
+            text-align: center;
+            font-weight: 900;
+            font-size: 30px;
+            color: rgb(16, 137, 211);
+            margin-bottom: 20px;
+        }
+
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: rgb(16, 137, 211);
+        }
+
+        .form-table th,
+        .form-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid rgb(16, 137, 211);
+        }
+
+        .form-table tbody tr {
+            background-color: rgb(244, 247, 251);
+        }
+
+        .form-table tbody tr:hover {
+            background-color: #e0f7fa;
+        }
+
+        button, input[type="submit"] {
+            border: 2px solid #24b4fb;
+            background-color: #24b4fb;
+            border-radius: 0.9em;
+            cursor: pointer;
+            padding: 0.3em 1em;
+            transition: all ease-in-out 0.2s;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: #0071e2;
+        }
+
+        select, input[type="time"], input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">Add Stop</div>
+        <form method="post" action="/admin_add_stops_post">{% csrf_token %}
+            <table class="form-table">
+                <tr>
+                    <th>Route</th>
+                    <td>
+                        <select name="route">
+                            <option>---SELECT---</option>
+                            {% for i in data %}
+                            <option value="{{ i.id }}">{{ i.from_place }} to {{ i.to_place }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Stop Name</th>
+                    <td>
+                        <input type="text" name="stop">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Latitude</th>
+                    <td>
+                        <input type="text" name="lat">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Longitude</th>
+                    <td>
+                        <input type="text" name="lon">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" value="Add Stop">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

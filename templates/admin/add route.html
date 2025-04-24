@@ -1,0 +1,345 @@
+{##}
+{##}
+{#{% extends 'admin/indexsub.html' %}#}
+{#{% block body %}#}
+{##}
+{##}
+{#    <style>#}
+{#        .form-heading {#}
+{#            text-align: center;#}
+{#            margin: 2em;#}
+{#            color: #1089d3;#}
+{#            font-size: 1.2em;#}
+{#            font-weight: 900;#}
+{#            background-color: transparent;#}
+{#            align-self: center;#}
+{#        }#}
+{##}
+{#        .form {#}
+{#            display: flex;#}
+{#            flex-direction: column;#}
+{#            align-self: center;#}
+{#            font-family: inherit;#}
+{#            gap: 10px;#}
+{#            padding-inline: 2em;#}
+{#            padding-bottom: 0.4em;#}
+{#            background-color: #ffffff;#}
+{#            border-radius: 20px;#}
+{#            color: white;#}
+{#        }#}
+{##}
+{#        .form-table {#}
+{#            width: 100%;#}
+{#            border-collapse: collapse;#}
+{#            color: #248287;#}
+{#        }#}
+{##}
+{#        .form-table thead {#}
+{#            background-color: #0a192f;#}
+{#        }#}
+{##}
+{#        .form-table th,#}
+{#        .form-table td {#}
+{#            padding: 12px 16px;#}
+{#            text-align: left;#}
+{#            border: 1px solid #e0f7fa;#}
+{#        }#}
+{##}
+{#        .form-table tbody tr {#}
+{#            background-color: #171717;#}
+{#            box-shadow: inset 2px 5px 10px rgb(5, 5, 5);#}
+{#            color: #e0f7fa;#}
+{#        }#}
+{##}
+{#        .form-table tbody tr:hover {#}
+{#            background-color: #0a192f;#}
+{#        }#}
+{##}
+{#        .form-field {#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            justify-content: center;#}
+{#            gap: 0.5em;#}
+{#            border-radius: 10px;#}
+{#            padding: 0.6em;#}
+{#            border: none;#}
+{#            outline: none;#}
+{#            color: white;#}
+{#            background-color: #171717;#}
+{#            box-shadow: inset 2px 5px 10px rgb(5, 5, 5);#}
+{#        }#}
+{##}
+{#        .sendMessage-btn {#}
+{#            cursor: pointer;#}
+{#            padding: 0.8em 1.5em;#}
+{#            border-radius: 10px;#}
+{#            border: none;#}
+{#            outline: none;#}
+{#            background-color: transparent;#}
+{#            color: #e0f7fa;#}
+{#            font-weight: bold;#}
+{#            outline: 1px solid #e0f7fa;#}
+{#            transition: all ease-in-out 0.3s;#}
+{#        }#}
+{##}
+{#        .sendMessage-btn:hover {#}
+{#            background-color: #e0f7fa;#}
+{#            color: #000;#}
+{#            box-shadow: inset 2px 5px 10px rgb(5, 5, 5);#}
+{#        }#}
+{##}
+{#        .form-card1 {#}
+{#            background-image: linear-gradient(163deg, #e0f7fa 0%, #e0f7fa 100%);#}
+{#            border-radius: 22px;#}
+{#            transition: none;#}
+{#            text-align: center;#}
+{#            padding: 1em;#}
+{#            color: #000;#}
+{#            font-weight: bold;#}
+{#        }#}
+{##}
+{#        .form-card1:hover {#}
+{#            background-image: linear-gradient(163deg, #e0f7fa 0%, #e0f7fa 100%);#}
+{#        }#}
+{##}
+{#        button {#}
+{#            border: 2px solid #24b4fb;#}
+{#            background-color: #24b4fb;#}
+{#            border-radius: 0.9em;#}
+{#            cursor: pointer;#}
+{#            padding: 0.8em 1.2em 0.8em 1em;#}
+{#            transition: all ease-in-out 0.2s;#}
+{#            font-size: 16px;#}
+{#        }#}
+{##}
+{#        button span {#}
+{#            display: flex;#}
+{#            justify-content: center;#}
+{#            align-items: center;#}
+{#            color: #fff;#}
+{#            font-weight: 600;#}
+{#        }#}
+{##}
+{#        button:hover {#}
+{#            background-color: #0071e2;#}
+{#        }#}
+{##}
+{#        .form-table .form-field a {#}
+{#            border: 2px solid #24b4fb;#}
+{#            background-color: #24b4fb;#}
+{#            border-radius: 0.9em;#}
+{#            cursor: pointer;#}
+{#            padding: 0.8em 1.5em;#}
+{#            transition: all ease-in-out 0.3s;#}
+{#            font-size: 16px;#}
+{#            text-decoration: none;#}
+{#            color: #fff;#}
+{#            font-weight: 600;#}
+{#            display: flex;#}
+{#            justify-content: center;#}
+{#            align-items: center;#}
+{#        }#}
+{##}
+{#        .form-table .form-field a:hover {#}
+{#            background-color: #0071e2;#}
+{#        }#}
+{##}
+{#        .form-table .form-field a:active {#}
+{#            transform: scale(0.95);#}
+{#            box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#<div class="form">#}
+{#    <h1 class="form-heading">Manage Routes</h1>#}
+{#    <table class="form-table">#}
+{#        <thead>#}
+{#        <tr>#}
+{#            <th>From Place</th>#}
+{#            <th>To Place</th>#}
+{#            <th>Actions</th>#}
+{#        </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for i in data %}#}
+{#        <tr>#}
+{#            <td>{{ i.from_place }}</td>#}
+{#            <td>{{ i.to_place }}</td>#}
+{#            <td>#}
+{#                <div class="form-field">#}
+{#                    <a href="/route_edit/{{ i.id }}" class="sendMessage-btn">Edit</a>#}
+{#                    <a href="/delete_route/{{ i.id }}" class="sendMessage-btn">Delete</a>#}
+{#                    <a href="/add_routestop/{{ i.id }}" class="sendMessage-btn">Add Stop</a>#}
+{#                    <a href="/mng_stop/{{ i.id }}" class="sendMessage-btn">Manage Stops</a>#}
+{#                </div>#}
+{#            </td>#}
+{#        </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#    <div class="form-field">#}
+{#        <a href="/add_route" class="form-card1">Add New Route</a>#}
+{#    </div>#}
+{#</div>#}
+{#</body>#}
+{#</html>#}
+{##}
+{#{% endblock %}#}
+{##}
+
+
+
+{% extends 'admin/indexsub.html' %}
+{% block body %}
+<style>
+    .containerroute {
+        max-width: 100%;
+        background: #f8f9fd;
+        background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+        border-radius: 40px;
+        padding: 25px 35px;
+        border: 5px solid rgb(255, 255, 255);
+        box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+        margin: 20px;
+    }
+
+    .heading {
+        text-align: center;
+        font-weight: 900;
+        font-size: 30px;
+        color: rgb(16, 137, 211);
+        margin-bottom: 20px;
+    }
+
+    /* Table Styling - Consistent with other pages */
+    .form-table {
+        width: 100%;
+        border-collapse: collapse;
+        color: rgb(16, 137, 211);
+        margin: 20px 0;
+    }
+
+    .form-table thead {
+        background-color: #0a192f;
+        color: #fff;
+    }
+
+    .form-table th,
+    .form-table td {
+        padding: 12px 16px;
+        text-align: left;
+        border: 1px solid rgb(16, 137, 211);
+    }
+
+    .form-table tbody tr {
+        background-color: rgb(244, 247, 251);
+    }
+
+    .form-table tbody tr:hover {
+        background-color: #e0f7fa;
+    }
+
+    /* Button Styles */
+    .action-button {
+        border: 2px solid #24b4fb;
+        background-color: #24b4fb;
+        border-radius: 0.9em;
+        cursor: pointer;
+        padding: 0.8em 1.2em;
+        transition: all ease-in-out 0.2s;
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+        margin: 0 4px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .action-button:hover {
+        background-color: #0071e2;
+        transform: translateY(-2px);
+        box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 5px 15px -5px;
+    }
+
+    .action-button:active {
+        transform: scale(0.98);
+    }
+
+    /* Add New Route Button */
+    .add-button {
+        display: block;
+        width: 200px;
+        margin: 20px auto;
+        font-weight: bold;
+        background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+        color: white;
+        padding: 15px;
+        border-radius: 20px;
+        box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+        border: none;
+        transition: all 0.2s ease-in-out;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .add-button:hover {
+        transform: scale(1.03);
+        box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+    }
+
+    /* Action Buttons Container */
+    .action-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+        .action-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .action-button {
+            width: 100%;
+            margin: 4px 0;
+        }
+    }
+</style>
+
+<body>
+<div class="containerroute">
+    <div class="heading">Manage Routes</div>
+
+    <table class="form-table">
+        <thead>
+        <tr>
+            <th>From Place</th>
+            <th>To Place</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in data %}
+        <tr>
+            <td>{{ i.from_place }}</td>
+            <td>{{ i.to_place }}</td>
+            <td>
+                <div class="action-buttons">
+                    <a href="/route_edit/{{ i.id }}" class="action-button">Edit</a>
+                    <a href="/delete_route/{{ i.id }}" class="action-button">Delete</a>
+                    <a href="/add_routestop/{{ i.id }}" class="action-button">Add Stop</a>
+                    <a href="/mng_stop/{{ i.id }}" class="action-button">Manage Stops</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/add_route" class="add-button">Add New Route</a>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,216 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#<style type="text/css">#}
+{#<!--#}
+{#.style1 {font-size: x-small}#}
+{#.style2 {font-size: smaller}#}
+{#-->#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/view_schedule_search">#}
+{#  <table width="254" border="1">#}
+{#  <tr>#}
+{#      <th><a href="/add_time_schesule">Add</a> </th>#}
+{#  </tr>#}
+{#    <tr>#}
+{##}
+{#        <th colspan="5">Route name</th>#}
+{#            <th><select name="route">#}
+{#                <option>----SELECT---</option>#}
+{#                {% for i in route %}#}
+{#                <option value="{{ i.id }}">FROM :{{ i.from_place }} == To:{{ i.to_place }}</option>#}
+{#                {% endfor %}#}
+{#            </select></th>#}
+{#      <th colspan="2"><input type="submit"  name="submit" value="search"> </th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td width="23">SlNO</td>#}
+{#      <td width="23">Bus No</td>#}
+{#      <td width="23">Bus Name</td>#}
+{#      <td width="36">From Route</td>#}
+{#      <td width="36">To Route</td>#}
+{#      <td width="89">Start Time</td>#}
+{#      <td width="89">End Time</td>#}
+{#      <td width="89"></td>#}
+{#    </tr>#}
+{#      {% for i in data %}#}
+{#    <tr>#}
+{#      <td>&nbsp;{{ forloop.counter }}</td>#}
+{#    <td>{{ i.BUS.bus_no }}</td>#}
+{#    <td>{{ i.busname }}</td>#}
+{#        <td>{{ i.routename.from_place }}</td>#}
+{#        <td>{{ i.routename.to_place }}</td>#}
+{#      <td>{{ i.starttime }}</td>#}
+{#      <td>{{ i.endtime }}</td>#}
+{#      <td><a href="/dlt_schedule/{{ i.id }}">Delete</a> </td>#}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{% extends 'admin/indexsub.html' %}
+{% block body %}
+<title>Bus Schedule</title>
+<style>
+{#    .container {#}
+{#      max-width: 100%;#}
+{#      background: #f8f9fd;#}
+{#      background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);#}
+{#      border-radius: 40px;#}
+{#      padding: 25px 35px;#}
+{#      border: 5px solid rgb(255, 255, 255);#}
+{#      box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;#}
+{#      margin: 20px;#}
+{#    }#}
+
+    .heading {
+      text-align: center;
+      font-weight: 900;
+      font-size: 30px;
+      color: rgb(16, 137, 211);
+    }
+
+    /* Table and Button Styling */
+    .form-table {
+      width: 100%;
+      border-collapse: collapse;
+      color: rgb(16, 137, 211);
+    }
+
+    .form-table thead {
+      background-color: #0a192f;
+      color: #fff;
+    }
+
+    .form-table th,
+    .form-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border: 1px solid rgb(16, 137, 211);
+    }
+
+    .form-table tbody tr {
+      background-color: rgb(244, 247, 251);
+    }
+
+    .form-table tbody tr:hover {
+      background-color: #e0f7fa;
+    }
+
+    button {
+      border: 2px solid #24b4fb;
+      background-color: #24b4fb;
+      border-radius: 0.9em;
+      cursor: pointer;
+      padding: 0.3em 1em 0.3em 1em;
+      transition: all ease-in-out 0.2s;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    button span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background-color: #0071e2;
+    }
+
+    /* Form and Button Styling */
+    .form-card1 {
+      text-align: center;
+      background-color: #12b1d1;
+      color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: block;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .form-card1:hover {
+      background-color: #0099ff;
+    }
+
+    .form-card1:active {
+      transform: scale(0.95);
+      box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+    }
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1 class="heading">Bus Schedule</h1>
+  <form id="form1" name="form1" method="post" action="/view_schedule_search#services">
+    <table class="form-table">
+      <thead>
+        <tr>
+          <th colspan="8">
+            <a href="/add_time_schesule" class="form-card1">Add Schedule</a>
+          </th>
+        </tr>
+        <tr>
+          <th colspan="5">Route Name</th>
+          <th colspan="3">
+            <select name="route">
+              <option>----SELECT----</option>
+              {% for i in route %}
+              <option value="{{ i.id }}">FROM: {{ i.from_place }} TO: {{ i.to_place }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit"><span>Search</span></button>
+          </th>
+        </tr>
+        <tr>
+          <th>Sl No</th>
+          <th>Bus No</th>
+          <th>Bus Name</th>
+          <th>From Route</th>
+          <th>To Route</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.BUS.bus_no }}</td>
+          <td>{{ i.BUS.name }}</td>
+          <td>{{ i.routename.from_place }}</td>
+          <td>{{ i.routename.to_place }}</td>
+          <td>{{ i.starttime }}</td>
+          <td>{{ i.endtime }}</td>
+          <td>
+              <a href="/dlt_schedule/{{ i.id }}" class="form-card1">Delete</a>
+              <a href="/add_time_schedule/{{ i.id }}" class="form-card1">Time</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+</div>
+{% endblock %}
+{#</body>#}
+{#</html>#}

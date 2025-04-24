@@ -1,0 +1,198 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{#<form action="submit_schedule" method="post">#}
+{#    <table>#}
+{#        <tr>#}
+{#            <th>Route name</th>#}
+{#            <th><select name="route">#}
+{#                <option>----SELECT---</option>#}
+{#                {% for i in route %}#}
+{#                <option value="{{ i.id }}">FROM :{{ i.from_place }} == To:{{ i.to_place }}</option>#}
+{#                {% endfor %}#}
+{#            </select></th>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th>Bus name</th>#}
+{#            <th><select name="bus">#}
+{#                <option>----SELECT---</option>#}
+{#                {% for i in bus %}#}
+{#                <option value="{{ i.id }}">{{ i.bus_no }}</option>#}
+{#                {% endfor %}#}
+{#            </select></th>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th>Starting Time</th>#}
+{#            <th><input type="time" value="" name="stime"> </th>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th>Ending Time</th>#}
+{#            <th><input type="time" value="" name="etime"> </th>#}
+{#        </tr> <tr>#}
+{#            <th>Trip Name</th>#}
+{#            <th><input type="text" value="" name="trip"> </th>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th>bus Name</th>#}
+{#            <th><input type="text" value="" name="busname"> </th>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th></th>#}
+{#            <th><input type="submit" > </th>#}
+{#        </tr>#}
+{#    </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Submission</title>
+    <style>
+        .container {
+            max-width: 100%;
+            background: #f8f9fd;
+            background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+            border-radius: 40px;
+            padding: 25px 35px;
+            border: 5px solid rgb(255, 255, 255);
+            box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+            margin: 20px;
+        }
+
+        .heading {
+            text-align: center;
+            font-weight: 900;
+            font-size: 30px;
+            color: rgb(16, 137, 211);
+        }
+
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: rgb(16, 137, 211);
+        }
+
+        .form-table th,
+        .form-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid rgb(16, 137, 211);
+        }
+
+        .form-table tbody tr {
+            background-color: rgb(244, 247, 251);
+        }
+
+        .form-table tbody tr:hover {
+            background-color: #e0f7fa;
+        }
+
+        button, input[type="submit"] {
+            border: 2px solid #24b4fb;
+            background-color: #24b4fb;
+            border-radius: 0.9em;
+            cursor: pointer;
+            padding: 0.3em 1em 0.3em 1em;
+            transition: all ease-in-out 0.2s;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: #0071e2;
+        }
+
+        select, input[type="time"], input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="heading">Submit Schedule</h1>
+    <form action="submit_schedule" method="post">
+        <table class="form-table">
+            <tbody>
+                <tr>
+                    <th>Route Name</th>
+                    <td>
+                        <select name="route">
+                            <option>----SELECT----</option>
+                            {% for i in route %}
+                            <option value="{{ i.id }}">FROM: {{ i.from_place }} == TO: {{ i.to_place }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Bus Number</th>
+                    <td>
+                        <select name="bus">
+                            <option>----SELECT----</option>
+                            {% for i in bus %}
+                            <option value="{{ i.id }}">{{ i.bus_no }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Starting Time</th>
+                    <td><input type="time" name="stime"></td>
+                </tr>
+                <tr>
+                    <th>Ending Time</th>
+                    <td><input type="time" name="etime"></td>
+                </tr>
+                <tr>
+                    <th>Trip Name</th>
+                    <td><input type="text" name="trip"></td>
+                </tr>
+
+
+
+                <tr>
+                    <th>Bus Name</th>
+                    <td>
+                        <select name="busname">
+                            <option>----SELECT----</option>
+                            {% for i in bus %}
+                            <option value="{{ i.id }}">{{ i.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+
+
+
+
+
+
+
+
+
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>
